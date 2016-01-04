@@ -139,24 +139,24 @@ angular.module('dndLists', [])
           // it always sets it to 'none', while Chrome on Linux sometimes sets it to something
           // else when it's supposed to send 'none' (drag operation aborted).
           var dropEffect = dndDropEffectWorkaround.dropEffect;
-          scope.$apply(function() {
+          $scope.$apply(function() {
             switch (dropEffect) {
               case "move":
-                $parse(attr.dndMoved)(scope, {event: event});
+                $parse($attr.dndMoved)($scope, {event: event});
                 break;
               case "copy":
-                $parse(attr.dndCopied)(scope, {event: event});
+                $parse($attr.dndCopied)($scope, {event: event});
                 break;
               case "none":
-                $parse(attr.dndCanceled)(scope, {event: event});
+                $parse($attr.dndCanceled)($scope, {event: event});
                 break;
             }
-            $parse(attr.dndDragend)(scope, {event: event, dropEffect: dropEffect});
+            $parse($attr.dndDragend)($scope, {event: event, dropEffect: dropEffect});
           });
 
           // Clean up
-          element.removeClass("dndDragging");
-          $timeout(function() { element.removeClass("dndDraggingSource"); }, 0);
+          $element.removeClass("dndDragging");
+          $timeout(function() { $element.removeClass("dndDraggingSource"); }, 0);
           dndDragTypeWorkaround.isDragging = false;
           event.stopPropagation();
         });
