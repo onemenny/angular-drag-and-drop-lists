@@ -142,16 +142,13 @@ angular.module('dndLists', [])
           $scope.$apply(function() {
             switch (dropEffect) {
               case "move":
-                $parse($attr.dndMoved)($scope, {event: event});
+                $parse($attrs.dndMoved)($scope, {event: event});
                 break;
               case "copy":
-                $parse($attr.dndCopied)($scope, {event: event});
-                break;
-              case "none":
-                $parse($attr.dndCanceled)($scope, {event: event});
+                $parse($attrs.dndCopied)($scope, {event: event});
                 break;
             }
-            $parse($attr.dndDragend)($scope, {event: event, dropEffect: dropEffect});
+            $parse($attrs.dndDragend)($scope, {event: event, dropEffect: dropEffect});
           });
 
           // Clean up
