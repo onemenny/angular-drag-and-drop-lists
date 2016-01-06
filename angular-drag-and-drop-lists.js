@@ -481,6 +481,7 @@ angular.module('dndLists', [])
           event: event,
           index: getPlaceholderIndex(),
           item: item || undefined,
+          list: scope.$eval(attr.dndList),
           external: !dndDragTypeWorkaround.isDragging,
           type: dndDragTypeWorkaround.isDragging ? dndDragTypeWorkaround.dragType : undefined
         });
